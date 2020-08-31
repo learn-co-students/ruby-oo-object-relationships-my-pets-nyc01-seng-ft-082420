@@ -57,10 +57,28 @@ class Owner
   end
 
   def sell_pets
+    pets =[]
+    Cat.all.each do |cat|
+      if cat.owner == self
+        pets << cat
+      end
+    end
 
+    Dog.all.each do |dog|
+      if dog.owner == self
+        pets << dog
+      end
+    end
+
+    pets.each do |pet|
+      pet.owner = nil
+      pet.mood = "nervous"
+    end
   end
 
-
+  def list_pets
+    "I have #{self.dogs.count} dog(s), and #{self.cats.count} cat(s)."
+  end
 
 
 
